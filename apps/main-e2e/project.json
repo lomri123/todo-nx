@@ -1,19 +1,19 @@
 {
-  "name": "todo-e2e",
+  "name": "main-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/todo-e2e/src",
+  "sourceRoot": "apps/main-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/todo-e2e/cypress.config.ts",
-        "devServerTarget": "todo:serve:development",
+        "cypressConfig": "apps/main-e2e/cypress.config.ts",
+        "devServerTarget": "main:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "todo:serve:production"
+          "devServerTarget": "main:serve:production"
         }
       }
     },
@@ -21,10 +21,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/todo-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/main-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["todo"]
+  "implicitDependencies": ["main"]
 }
