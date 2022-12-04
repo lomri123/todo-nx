@@ -1,12 +1,17 @@
+import TodoInput from './todo-input';
+import TodoList from './todo-list';
 import styles from './todo.module.scss';
+import { TodoItemBase } from './types';
 
-/* eslint-disable-next-line */
-export interface TodoProps {}
+export interface TodoProps {
+  todoList: TodoItemBase[];
+}
 
 export function Todo(props: TodoProps) {
   return (
     <div className={styles['container']}>
-      <h1>Welcome to Todo!</h1>
+      <TodoList />
+      <TodoInput />
     </div>
   );
 }
