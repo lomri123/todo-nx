@@ -1,22 +1,14 @@
-import {
-  MouseEventHandler,
-  ChangeEvent,
-  MouseEvent,
-  KeyboardEvent,
-  useState,
-} from 'react';
+import { ChangeEvent, MouseEvent, KeyboardEvent, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import SendIcon from '@mui/icons-material/Send';
 export interface TodoInputProps {
-  onItemDelete: MouseEventHandler;
   onTodoInputSubmit: (
-    event: MouseEvent | KeyboardEvent,
+    event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
     todoText: string
   ) => void;
-  initialText: string;
+  initialText?: string;
 }
 
 const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
@@ -28,7 +20,7 @@ const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
     setTodoText(event.target.value);
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Enter') {
       onTodoInputSubmit(event, todoText);
     }
@@ -47,7 +39,7 @@ const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
             onClick={(event) => onTodoInputSubmit(event, todoText)}
             edge="end"
           >
-            <VisibilityOff />
+            <SendIcon />
           </IconButton>
         </InputAdornment>
       }
