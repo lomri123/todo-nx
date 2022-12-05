@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { KeyboardEvent, MouseEvent } from 'react';
 import Todo, { ITodoItem } from '@todo-nx/todo';
 
@@ -10,30 +9,28 @@ export function App() {
   const [updateTodo] = todoApi.useUpdateTodoMutation();
   const [addTodo] = todoApi.useAddTodoMutation();
 
-  console.log('todos', todos);
-  const todoList: ITodoItem[] = [
-    { id: 'item-1', text: 'item 1', state: Todo.State['complete'] },
-  ];
-  // @ts-ignore
-  const handleTodoItemToggle = (event, text) => {
-    console.log('handleTodoItemToggle', event, text);
+  const handleTodoItemToggle = (event: MouseEvent, todoItem: ITodoItem) => {
+    const newState =
+      todoItem.state === Todo.State.complete
+        ? Todo.State.pending
+        : Todo.State.complete;
+    const newTodoItem = { ...todoItem, state: newState };
+    updateTodo(newTodoItem);
   };
-  // @ts-ignore
-  const handleTodoItemDelete = (event, todo) => {
-    deleteTodo(todo);
+
+  const handleTodoItemDelete = (event: MouseEvent, todoItem: ITodoItem) => {
+    deleteTodo(todoItem);
   };
   const onTodoInputSubmit = (
     event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-    todoText: string
+    todoItemText: string
   ) => {
-    addTodo(todoText);
+    addTodo(todoItemText);
   };
   return (
     <Todo
       todoList={todos}
-      // @ts-ignore
       onItemToggle={handleTodoItemToggle}
-      // @ts-ignore
       onItemDelete={handleTodoItemDelete}
       onTodoInputSubmit={onTodoInputSubmit}
     />

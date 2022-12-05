@@ -28,6 +28,7 @@ const Todo = ({
           const { id, state, text } = todoItem;
           return (
             <TodoItem
+              key={id}
               id={id}
               state={state}
               text={text}
