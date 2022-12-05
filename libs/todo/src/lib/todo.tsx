@@ -10,7 +10,7 @@ import {
 } from './types';
 
 export interface TodoProps extends TodoItemActions, TodoInputActions {
-  todoList: TodoItemBase[];
+  todoList?: TodoItemBase[];
   initialInputText?: string;
 }
 
@@ -24,7 +24,7 @@ const Todo = ({
   return (
     <div className={styles['container']}>
       <TodoList>
-        {todoList.map((todoItem) => {
+        {todoList?.map((todoItem) => {
           const { id, state, text } = todoItem;
           return (
             <TodoItem
