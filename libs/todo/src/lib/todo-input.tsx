@@ -1,18 +1,20 @@
-import { ChangeEvent, MouseEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import SendIcon from '@mui/icons-material/Send';
-export interface TodoInputProps {
-  onTodoInputSubmit: (
-    event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-    todoText: string
-  ) => void;
+
+import { TodoInputActions } from './types';
+export interface TodoInputProps extends TodoInputActions {
   initialText?: string;
 }
 
 const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
-  const [todoText, setTodoText] = useState(initialText);
+  const [todoText, setTodoText] = useState('');
+
+  useEffect(() => {
+    setTodoText(initialText);
+  }, []);
 
   const handleChange = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>

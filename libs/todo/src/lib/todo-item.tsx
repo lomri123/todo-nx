@@ -1,4 +1,3 @@
-import { MouseEventHandler } from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,12 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { TodoItemBase, TodoItemState } from './types';
+import { TodoItemBase, TodoItemActions, TodoItemState } from './types';
+import { MouseEvent } from 'react';
 
-export interface TodoItemProps extends TodoItemBase {
-  onItemToggle: MouseEventHandler;
-  onItemDelete: MouseEventHandler;
-}
+export interface TodoItemProps extends TodoItemBase, TodoItemActions {}
 
 const TodoItem = ({
   id,
@@ -22,17 +19,23 @@ const TodoItem = ({
   onItemDelete,
 }: TodoItemProps) => {
   const checked = state === TodoItemState.complete;
+  const handleItemToggle = (event: MouseEvent): void => {
+    onItemToggle(event, { id, text, state });
+  };
+  const handleItemDelete = (event: MouseEvent): void => {
+    onItemDelete(event, { id, text, state });
+  };
   return (
     <ListItem
       key={id}
       secondaryAction={
-        <IconButton edge="end" aria-label="delete" onClick={onItemDelete}>
+        <IconButton edge="end" aria-label="delete" onClick={handleItemDelete}>
           <DeleteIcon />
         </IconButton>
       }
       disablePadding
     >
-      <ListItemButton role={undefined} onClick={onItemToggle} dense>
+      <ListItemButton role={undefined} onClick={handleItemToggle} dense>
         <ListItemIcon>
           <Checkbox
             edge="start"

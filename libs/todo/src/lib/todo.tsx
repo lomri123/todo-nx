@@ -1,22 +1,22 @@
-import { KeyboardEvent, MouseEvent, MouseEventHandler } from 'react';
 import TodoInput from './todo-input';
 import TodoItem from './todo-item';
 import TodoList from './todo-list';
 import styles from './todo.module.scss';
-import { TodoItemBase } from './types';
+import {
+  TodoItemBase,
+  TodoItemActions,
+  TodoInputActions,
+  TodoItemState,
+} from './types';
 
-export interface TodoProps {
+export interface TodoProps extends TodoItemActions, TodoInputActions {
   todoList: TodoItemBase[];
-  onItemToggle: MouseEventHandler;
-  onItemDelete: MouseEventHandler;
-  onTodoInputSubmit: (
-    event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-    todoText: string
-  ) => void;
+  initialInputText?: string;
 }
 
 const Todo = ({
   todoList,
+  initialInputText,
   onItemToggle,
   onItemDelete,
   onTodoInputSubmit,
@@ -37,9 +37,16 @@ const Todo = ({
           );
         })}
       </TodoList>
-      <TodoInput onTodoInputSubmit={onTodoInputSubmit} />
+      <TodoInput
+        onTodoInputSubmit={onTodoInputSubmit}
+        initialText={initialInputText}
+      />
     </div>
   );
 };
 
-export default Todo;
+export default Object.assign(Todo, {
+  State: TodoItemState,
+}) as typeof Todo & {
+  State: typeof TodoItemState;
+};
