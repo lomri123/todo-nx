@@ -8,6 +8,7 @@ import {
   Param,
   HttpCode,
 } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 
 enum TodoState {
   pending = 'pending',
@@ -36,7 +37,7 @@ let todos: Todo[] = [
   'NextJS',
   'AWS',
 ].map((text, index) => ({
-  id: `${index + 1}`,
+  id: uuidv4(),
   text: `Learn ${text}`,
   state: TodoState.pending,
 }));
@@ -58,7 +59,7 @@ export class TodosController {
   @Post()
   async create(@Body() { text }: { text: string }): Promise<Todo> {
     const todo = {
-      id: `${todos.length + 1}`,
+      id: uuidv4(),
       text,
       state: TodoState.pending,
     };
