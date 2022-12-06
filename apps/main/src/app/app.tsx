@@ -4,6 +4,7 @@ import Todo, {
   useTodoListHook,
   ItemSentStates,
 } from '@todo-nx/todo';
+import Box from '@mui/material/Box';
 
 import todoApi from '../store';
 
@@ -70,13 +71,24 @@ export function App() {
     }
   };
   return (
-    <Todo
-      todoList={todoList}
-      todoSentStateList={todoSentStateList}
-      onItemToggle={handleTodoItemToggle}
-      onItemDelete={handleTodoItemDelete}
-      onTodoInputSubmit={onTodoInputSubmit}
-    />
+    <Box
+      sx={{
+        maxHeight: 600,
+        width: 400,
+        padding: '20px',
+        overflowY: 'auto',
+      }}
+      display="flex"
+      justifyContent="center"
+    >
+      <Todo
+        todoList={todoList}
+        todoSentStateList={todoSentStateList}
+        onItemToggle={handleTodoItemToggle}
+        onItemDelete={handleTodoItemDelete}
+        onTodoInputSubmit={onTodoInputSubmit}
+      />
+    </Box>
   );
 }
 

@@ -8,9 +8,7 @@ export interface TodoListProps {
 export function TodoList(props: TodoListProps) {
   const { children } = props;
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {children}
-    </List>
+    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>{children}</List>
   );
 }
 

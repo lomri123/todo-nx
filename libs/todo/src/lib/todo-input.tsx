@@ -51,14 +51,16 @@ const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
 
   return (
     <OutlinedInput
-      id="outlined-adornment-password"
+      id="outlined-todo-input"
+      placeholder="add a new todo"
+      label={false}
       value={todoText}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       endAdornment={
         <InputAdornment position="end">
           <IconButton
-            aria-label="toggle password visibility"
+            aria-label="add a new todo"
             onClick={handleDeleteButtonClick}
             edge="end"
           >
@@ -66,7 +68,6 @@ const TodoInput = ({ initialText = '', onTodoInputSubmit }: TodoInputProps) => {
           </IconButton>
         </InputAdornment>
       }
-      label="Password"
     />
   );
 };

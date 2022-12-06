@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
+import Box from '@mui/material/Box';
 
 import TodoInput from './todo-input';
 import TodoItem from './todo-item';
 import TodoList from './todo-list';
-import styles from './todo.module.scss';
 import {
   TodoItemBase,
   TodoItemActions,
@@ -47,7 +47,11 @@ const Todo = ({
     [todoSentStateList]
   );
   return (
-    <div className={styles['container']}>
+    <Box display="flex" flexDirection="column" width="100%">
+      <TodoInput
+        onTodoInputSubmit={onTodoInputSubmit}
+        initialText={initialInputText}
+      />
       <TodoList>
         {todoList?.map((todoItem) => {
           const { id, state, text } = todoItem;
@@ -64,11 +68,7 @@ const Todo = ({
           );
         })}
       </TodoList>
-      <TodoInput
-        onTodoInputSubmit={onTodoInputSubmit}
-        initialText={initialInputText}
-      />
-    </div>
+    </Box>
   );
 };
 
