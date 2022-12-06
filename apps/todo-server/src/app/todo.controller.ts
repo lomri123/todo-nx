@@ -36,7 +36,7 @@ let todos: Todo[] = [
   'SolidJS',
   'NextJS',
   'AWS',
-].map((text, index) => ({
+].map((text) => ({
   id: uuidv4(),
   text: `Learn ${text}`,
   state: TodoState.pending,

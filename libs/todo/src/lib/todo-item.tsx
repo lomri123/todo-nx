@@ -9,12 +9,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { TodoItemBase, TodoItemActions, TodoItemState } from './types';
 import { MouseEvent } from 'react';
 
-export interface TodoItemProps extends TodoItemBase, TodoItemActions {}
+export interface TodoItemProps extends TodoItemBase, TodoItemActions {
+  sentStateColor?: string;
+}
 
 const TodoItem = ({
   id,
   text,
   state,
+  sentStateColor = 'black',
   onItemToggle,
   onItemDelete,
 }: TodoItemProps) => {
@@ -25,6 +28,7 @@ const TodoItem = ({
   const handleItemDelete = (event: MouseEvent): void => {
     onItemDelete(event, { id, text, state });
   };
+
   return (
     <ListItem
       key={id}
@@ -45,7 +49,11 @@ const TodoItem = ({
             inputProps={{ 'aria-labelledby': id }}
           />
         </ListItemIcon>
-        <ListItemText id={id} primary={text} />
+        <ListItemText
+          id={id}
+          primary={text}
+          style={{ color: sentStateColor }}
+        />
       </ListItemButton>
     </ListItem>
   );

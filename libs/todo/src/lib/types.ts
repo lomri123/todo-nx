@@ -1,8 +1,15 @@
 import { KeyboardEvent, MouseEvent } from 'react';
+import SentStatusFSM from '../machine/state-machine';
 
 export enum TodoItemState {
   pending = 'pending',
   complete = 'complete',
+}
+
+export enum ItemSentStates {
+  sent = 'sent',
+  complete = 'complete',
+  error = 'error',
 }
 
 export interface TodoItemBase {
@@ -22,3 +29,15 @@ export interface TodoInputActions {
     todoText: string
   ) => void;
 }
+
+export interface TodoItemSentState extends TodoItemBase {
+  sentStateMachine: SentStatusFSM;
+}
+
+export type ItemToupdate = {
+  newState: ItemSentStates;
+  tempId: string;
+  newId?: string;
+};
+
+export type InitialState = TodoItemBase[] | undefined;
