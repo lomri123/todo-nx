@@ -1,5 +1,7 @@
 # todo-nx
 
+Yet another todo project showcasing a monorepo built using NX.
+containing a server, a main app and a package (being consumed by the main app)
 
 
 ## How to run
@@ -10,7 +12,7 @@
 npm i
 ```
 
-2. build the monorepo
+2. build the project
 
 ```
 npm run build
